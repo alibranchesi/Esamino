@@ -3,6 +3,7 @@
 #include <string>
 #include <cmath>
 #include "doctest.h"
+//*operator doesn't work
 class Complex
 {
 private:
@@ -48,9 +49,9 @@ Complex operator-(Complex c1, Complex c2)
     return Complex{c1.real() - c2.real(), c1.imag() - c2.imag()};
 }
 
-Complex operatorx(Complex c1, Complex c2)
+Complex operator*(Complex c1, Complex c2)
 {
-    return Complex{(c1.real() * c2.real()) + (c1.imag() * c2.imag()),
+    return Complex{(c1.real() * c2.real()) - (c1.imag() * c2.imag()),
                    (c1.imag() * c2.real()) + (c1.real() * c2.imag())};
 }
 
@@ -101,14 +102,14 @@ TEST_CASE("Testing Complex") {
     CHECK(a - b == Complex{-1, -1});
     CHECK(a - c == Complex{-1.0, -1.0});
   }
-  /*SUBCASE("Testing x operator") {
+  SUBCASE("Testing x operator") {
     Complex a{8, -5};
     Complex b{3, -2};
     Complex c{3.0, -2.0};
 
     CHECK(a*b == Complex{14, -31});
     CHECK(a*c == Complex{14.0, -31.0});
-  }*/ //BOH
+  }
   SUBCASE("Testing / operator") {
     Complex a{5, 3};
     Complex b{2, -4};
