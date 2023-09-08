@@ -37,16 +37,18 @@ public:
         if (col_ != row_)
             return false;
 
-        for (int i = 0; i < row_; i++)
+        for (int i = 1; i <= row_; i++)
         {
-            for (int j = 0; j < col_; j++)
+            for (int j = 1; j <= col_; j++)
             {
-                if (Get_ij(i, j) == Get_ij(j, i))
-                    return true;
+                if (Get_ij(i, j) != Get_ij(j, i))
+                    return false;
             }
+            return true;
         }
-        return false;
+        
     }
+
 
     /*bool operator==(Matrix const& mat1, Matrix const& mat2){
         if(mat1.col != mat2.col || mat1.row != mat2.row) return false;
@@ -64,14 +66,18 @@ int main()
 {
     Matrix matrix(std::vector<int>{
                       1, 2, 2,
-                      2, 3, 4,
+                      2, 12000, 4,
                       4, 5, 12},
                   3, 3);
     Matrix matrix1(std::vector<int>{
-                       1, 1,
-                       2,2},
-                   2, 2);
+                       1, 2,3,
+                       2,0,5,
+                       3,5,6,},
+                   3, 3);
+
+    Matrix matrix2(std::vector<int>{1,2,3,4},2,2);
     std::cout << matrix.Get_ij(2, 2) << '\n';
     std::cout << matrix.Trace_(matrix) << '\n';
     std::cout << matrix1.Simmetry() << '\n'; // perché non va?
+    std::cout << matrix2.Simmetry() << '\n';
 }
